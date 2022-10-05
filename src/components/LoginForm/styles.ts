@@ -4,7 +4,7 @@ export const Container = styled.View`
   justify-content: space-evenly;
   width: 90%;
   height: 385px;
-  margin-top: 100px;
+  margin-top: 50%;
   margin-left: 20px;
   background-color: #fff;
   border-radius: 10px;
