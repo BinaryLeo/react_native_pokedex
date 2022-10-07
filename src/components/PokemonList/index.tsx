@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { View, ActivityIndicator } from "react-native";
+import { ActivityIndicator } from "react-native-paper";
 import * as style from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -10,12 +10,11 @@ import {
 } from "../../types/pokemonSettings";
 
 export function PokemonList({ RequestAPI, arrayPoke }: FlatListProps) {
-  
   const renderItem = useCallback(({ item }: { item: PokemonProps }) => {
     const type = item.types[0].type.name;
 
     return (
-      <style.ContainerItem bgColor={BgPokeColor[type as PropsKeyColor]}>
+      <style.ContainerItem colors={BgPokeColor[type as PropsKeyColor]}>
         <style.ImagePokemon
           source={{ uri: item.sprites.other["official-artwork"].front_default }}
         />
@@ -28,7 +27,7 @@ export function PokemonList({ RequestAPI, arrayPoke }: FlatListProps) {
   }, []);
 
   return (
-    <View>
+    <>
       <style.FlatList
         data={arrayPoke}
         keyExtractor={(_, index) => index.toString()}
@@ -37,6 +36,6 @@ export function PokemonList({ RequestAPI, arrayPoke }: FlatListProps) {
         onEndReachedThreshold={0.1}
         ListFooterComponent={<ActivityIndicator />}
       />
-    </View>
+    </>
   );
 }

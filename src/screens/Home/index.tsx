@@ -31,7 +31,7 @@ export function CharacterList() {
   }, []);
   return (
     <View style={{ width: "100%", height: "100%", alignItems: "center" }}>
-      <View style={{ width: "30%", alignItems: "center", marginTop: 17 }}>
+      <View style={{ width: "30%",alignItems: "center", marginTop: 17 }}>
         <Image source={Small} />
       </View>
       <SearchBar />

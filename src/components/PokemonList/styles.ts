@@ -1,27 +1,20 @@
-import {Dimensions} from 'react-native';
-import styled from 'styled-components/native';
+import { Dimensions } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
+import styled from "styled-components/native";
 
-const {height, width} = Dimensions.get('window');
+const { height, width } = Dimensions.get("window");
 
-const CalcHeight = height / 6;
+const calcHeight = height / 6;
 
-type ContainerProps = {
-  bgColor: string;
-};
 
-export const Container = styled.View`
-  flex: 1;
-`;
 
-export const ContainerItem = styled.TouchableOpacity<ContainerProps>`
+export const ContainerItem = styled(LinearGradient)`
   width: ${width / 2.2}px;
-  height: ${CalcHeight}px;
-  margin-right: 10px;
-  margin-bottom: 28px;
+  height: ${calcHeight}px;
+  margin: 15px 8px;
   justify-content: center;
   align-items: center;
   overflow: visible;
-  background-color: ${({bgColor}) => bgColor || '#3f3f3f'};
   border-radius: 20px;
 `;
 
@@ -51,7 +44,7 @@ export const NamePokemon = styled.Text`
 export const FlatList = styled.FlatList.attrs({
   contentContainerStyle: {
     paddingVertical: 30,
-    paddingBottom: CalcHeight,
+    paddingBottom: calcHeight,
   },
   numColumns: 2,
 })``;

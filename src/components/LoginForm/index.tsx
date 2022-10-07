@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Alert, Button } from "react-native";
+import { Alert, Button, Text } from "react-native";
 import { TextInput } from "react-native-paper";
-import { Container, Welcome, Label } from "./styles";
+import * as style from "./styles";
 export function LoginForm() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [emailToLogin, setEmailToLogin] = useState("");
@@ -25,9 +25,9 @@ export function LoginForm() {
     }
   };
   return (
-    <Container>
-      <Welcome>Bem-vindo</Welcome>
-      <Label>Insira seus dados para acessar</Label>
+    <style.Container>
+      <style.Welcome>Welcome</style.Welcome>
+      <style.Label>Insert your credentials</style.Label>
 
       <TextInput
         label="Email"
@@ -46,7 +46,9 @@ export function LoginForm() {
           />
         }
       />
-      <Button title="Login" onPress={() => SignIn()} />
-    </Container>
+      <style.ButtonSignIn onPress={() => SignIn()}>
+        <style.ButtonSignInText>SignIn</style.ButtonSignInText>
+      </style.ButtonSignIn>
+    </style.Container>
   );
 }
