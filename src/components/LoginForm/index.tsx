@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Alert, Button, Text } from "react-native";
+import { Alert} from "react-native";
 import { TextInput } from "react-native-paper";
 import * as style from "./styles";
 export function LoginForm() {
@@ -35,7 +35,7 @@ export function LoginForm() {
         onChangeText={(emailToLogin) => setEmailToLogin(emailToLogin)}
       />
       <TextInput
-        label="Senha"
+        label="Passoword"
         secureTextEntry={passwordVisible}
         mode="flat"
         onChangeText={(passwordToLogin) => setPasswordToLogin(passwordToLogin)}
