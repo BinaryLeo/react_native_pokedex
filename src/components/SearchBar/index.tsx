@@ -1,22 +1,13 @@
 import { useState } from "react";
-import { View } from "react-native";
 import { Searchbar, IconButton, Button } from "react-native-paper";
+import * as style from "./style";
 
 export function SearchBar() {
   const [searchPokeQuery, setSearchPokeQuery] = useState("");
   const onChangeSearch = (query) => setSearchPokeQuery(query);
   return (
-    <View style={{ marginBottom: 30 }}>
-      <View
-        style={{
-          width: "100%",
-          alignItems: "flex-end",
-          flexDirection: "row",
-          padding: 5,
-          marginBottom: 15,
-          justifyContent: "space-evenly",
-        }}
-      >
+    <style.Separator>
+      <style.Container>
         <Searchbar
           placeholder="Search Pokemon"
           onChangeText={onChangeSearch}
@@ -30,8 +21,8 @@ export function SearchBar() {
           }}
         />
         <IconButton icon="tune" color="#5E5D5D" size={28} />
-      </View>
-      <View style={{ width: "100%", height: 20, marginLeft: 25 }}>
+      </style.Container>
+      <style.ButtonContainer>
         <Button
           icon="close-circle"
           mode="contained"
@@ -48,7 +39,7 @@ export function SearchBar() {
         >
           All
         </Button>
-      </View>
-    </View>
+      </style.ButtonContainer>
+    </style.Separator>
   );
 }

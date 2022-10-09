@@ -6,7 +6,7 @@ import axios from "axios";
 import { PokemonProps } from "../../types/pokemonSettings";
 import { ResponseProps } from "../../types/responseProps";
 import { PokemonList } from "../../components/PokemonList";
-export function CharacterList() {
+export function Home() {
   const [pokemons, setPokemon] = useState<PokemonProps[]>([]);
   const [nextUrl, setNextUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
   const loading=false;

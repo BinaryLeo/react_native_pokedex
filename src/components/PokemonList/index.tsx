@@ -1,19 +1,20 @@
 import { useCallback } from "react";
 import { ActivityIndicator } from "react-native-paper";
 import * as style from "./styles";
-import { useNavigation } from "@react-navigation/native";
 import {
   PokemonProps,
   BgPokeColor,
   PropsKeyColor,
   FlatListProps,
 } from "../../types/pokemonSettings";
+import { TouchableOpacity } from "react-native";
 
 export function PokemonList({ RequestAPI, arrayPoke }: FlatListProps) {
   const renderItem = useCallback(({ item }: { item: PokemonProps }) => {
     const type = item.types[0].type.name;
 
     return (
+      <TouchableOpacity>
       <style.ContainerItem colors={BgPokeColor[type as PropsKeyColor]}>
         <style.ImagePokemon
           source={{ uri: item.sprites.other["official-artwork"].front_default }}
@@ -23,6 +24,7 @@ export function PokemonList({ RequestAPI, arrayPoke }: FlatListProps) {
           <style.NamePokemon>{item.name}</style.NamePokemon>
         </style.ContainerNamePokemon>
       </style.ContainerItem>
+      </TouchableOpacity>
     );
   }, []);
 

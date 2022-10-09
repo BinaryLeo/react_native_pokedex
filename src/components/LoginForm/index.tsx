@@ -1,53 +1,45 @@
-import React, { useState } from "react";
-import { Alert} from "react-native";
 import { TextInput } from "react-native-paper";
 import * as style from "./styles";
-export function LoginForm() {
-  const [passwordVisible, setPasswordVisible] = useState(false);
-  const [emailToLogin, setEmailToLogin] = useState("");
-  const [passwordToLogin, setPasswordToLogin] = useState("");
-
-  const SignIn = () => {
-    const strongRegex = new RegExp(
-      "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
-    );
-
-    if (!strongRegex.test(emailToLogin)) {
-      Alert.alert("Please enter your email address");
-      return false;
-    } else if (emailToLogin == "") {
-      Alert.alert("Please enter your email address");
-    } else if (passwordToLogin.length < 8) {
-      Alert.alert("Wrong password");
-      return false;
-    } else {
-      Alert.alert("Yes");
-    }
-  };
+interface IProps {
+  onGetEmail: (text: string) => void;
+  onGetPassword: (text: string) => void;
+  onSignIn: () => void;
+  onSignOut: () => void;
+  secure: boolean;
+  onShowPassword: () => void;
+}
+export function LoginForm({
+  onGetEmail,
+  onGetPassword,
+  onSignIn,
+  onSignOut,
+  secure,
+  onShowPassword
+  
+}: IProps) {
   return (
     <style.Container>
       <style.Welcome>Welcome</style.Welcome>
       <style.Label>Insert your credentials</style.Label>
 
+      <TextInput label="Email" mode="flat" onChangeText={onGetEmail} />
       <TextInput
-        label="Email"
+        label="Password"
+        secureTextEntry={secure}
         mode="flat"
-        onChangeText={(emailToLogin) => setEmailToLogin(emailToLogin)}
-      />
-      <TextInput
-        label="Passoword"
-        secureTextEntry={passwordVisible}
-        mode="flat"
-        onChangeText={(passwordToLogin) => setPasswordToLogin(passwordToLogin)}
+        onChangeText={onGetPassword}
         right={
           <TextInput.Icon
-            name={passwordVisible ? "eye" : "eye-off"}
-            onPress={() => setPasswordVisible(!passwordVisible)}
+            name={secure ? "eye" : "eye-off"}
+            onPress={onShowPassword}
           />
         }
       />
-      <style.ButtonSignIn onPress={() => SignIn()}>
+      <style.ButtonSignIn onPress={onSignIn}>
         <style.ButtonSignInText>SignIn</style.ButtonSignInText>
+      </style.ButtonSignIn>
+      <style.ButtonSignIn onPress={onSignOut}>
+        <style.ButtonSignInText>SignUp</style.ButtonSignInText>
       </style.ButtonSignIn>
     </style.Container>
   );
