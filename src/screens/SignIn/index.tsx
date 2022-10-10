@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { Alert, View } from "react-native";
+import { beAuthenticated } from "../../store/modules/Auth.store";
+import { useDispatch } from "react-redux";
+import auth from "@react-native-firebase/auth";
 import { BackGround } from "../../components/BackGround";
 import { LoginForm } from "../../components/LoginForm";
-import auth from "@react-native-firebase/auth";
+
 export function SignIn() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [emailToLogin, setEmailToLogin] = useState("");
   const [passwordToLogin, setPasswordToLogin] = useState("");
-
+  const dispatch = useDispatch();
   function SignUp() {
     if (emailToLogin == "") {
       Alert.alert("Please enter a valid email");
-    }
-    if (passwordToLogin.length < 6) {
-      Alert.alert("Invalid password, must be at least 6 characters");
-      return false;
     } else {
       auth()
         .createUserWithEmailAndPassword(emailToLogin, passwordToLogin)
@@ -36,10 +35,21 @@ export function SignIn() {
     }
   }
   function SignIn() {
-    auth()
-      .signInWithEmailAndPassword(emailToLogin, passwordToLogin)
-      .then(() => Alert.alert(`${emailToLogin} logged with successfully`))
-      .catch((error) => Alert.alert(error));
+    if (emailToLogin == "") {
+      Alert.alert("Please enter a valid email");
+    }
+    if (passwordToLogin.length < 6) {
+      Alert.alert("Invalid password, must be at least 6 characters");
+      return false;
+    } else {
+      auth()
+        .signInWithEmailAndPassword(emailToLogin, passwordToLogin)
+        .then(() => {
+          dispatch(beAuthenticated(emailToLogin));
+          Alert.alert(`${emailToLogin} logged with successfully`);
+        })
+        .catch((error) => Alert.alert(error));
+    }
   }
 
   return (

@@ -14,8 +14,7 @@ export function LoginForm({
   onSignIn,
   onSignOut,
   secure,
-  onShowPassword
-  
+  onShowPassword,
 }: IProps) {
   return (
     <style.Container>

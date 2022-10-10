@@ -1,6 +1,11 @@
 import React from "react";
-import { SignIn } from "./src/screens/SignIn";
-
+import {Router} from "./src/routes";
+import { Provider as ReduxProvider } from "react-redux";
+import Store from "./src/store/";
 export function App() {
-  return <SignIn />;
+return(
+  <ReduxProvider store={Store}>
+  <Router/>
+</ReduxProvider>
+)
 }

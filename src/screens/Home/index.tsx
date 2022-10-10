@@ -9,7 +9,7 @@ import { PokemonList } from "../../components/PokemonList";
 export function Home() {
   const [pokemons, setPokemon] = useState<PokemonProps[]>([]);
   const [nextUrl, setNextUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
-  const loading=false;
+  const loading = false;
   const requestApi = useCallback(() => {
     axios.get(nextUrl).then((res: ResponseProps) => {
       const arrayPoke: PokemonProps[] = [...pokemons];
@@ -29,20 +29,15 @@ export function Home() {
   }, []);
   return (
     <View style={{ width: "100%", height: "100%", alignItems: "center" }}>
-      <View style={{ width: "30%",alignItems: "center", marginTop: 17 }}>
+      <View style={{ width: "30%", alignItems: "center", marginTop: 17 }}>
         <Image source={Small} />
       </View>
       <SearchBar />
-     {!loading?(
-      <PokemonList
-      arrayPoke={pokemons}
-      RequestAPI={requestApi}
-      />
-     ):
-     (
-      <ActivityIndicator/>
-     )}
+      {!loading ? (
+        <PokemonList arrayPoke={pokemons} RequestAPI={requestApi} />
+      ) : (
+        <ActivityIndicator />
+      )}
     </View>
   );
 }
-
